@@ -1,0 +1,22 @@
+{
+  "name": "frontstart",
+  "description": "starter pack for template projects",
+  "main": "main.js",
+  "authors": [
+    "max"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "normalize-css": "^7.0.0",
+    "jQuery": "^3.2.1"
+  }
+}
