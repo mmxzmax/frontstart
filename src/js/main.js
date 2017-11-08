@@ -6,3 +6,4 @@
 * custom
  */
 //= partials/app.js
+
