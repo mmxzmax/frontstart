@@ -8,10 +8,7 @@ var gulp=require('gulp'),
     cssMin=require('gulp-minify-css'),
     rimRaf=require('rimraf'),
     browserSync=require('browser-sync'),
-    imagemin=require('gulp-imagemin'),
-    pngcrush=require('imagemin-pngcrush'),
     reload=browserSync.reload;
-
 var path={
     build:{
         html:'build',
@@ -35,7 +32,6 @@ var path={
         fonts:'src/fonts/**/*'
     },
     clean:'build'
-
 };
 gulp.task('html:build',function(){
     "use strict";
@@ -54,7 +50,6 @@ gulp.task('js:build',function(){
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream:true}));
 });
-
 gulp.task('style:build',function(){
     "use strict";
     gulp.src(path.src.style)
@@ -66,19 +61,16 @@ gulp.task('style:build',function(){
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream:true}));
 });
-
 gulp.task('copyimg',function(){
     "use strict";
     gulp.src(path.src.img)
         .pipe(gulp.dest(path.build.img));
 });
-
 gulp.task('copyfonts',function(){
     "use strict";
     gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.build.fonts));
 });
-
 gulp.task('watch',function(){
     "use strict";
     watch([path.watch.js],function(ev,callback){
@@ -108,26 +100,6 @@ gulp.task('clean',function(){
     "use strict";
     rimRaf(path.clean,callback);
 });
-gulp.task('compress',function(){
-    "use strict";
-        gulp
-        .src(path.src.img)
-            .pipe(imagemin([
-                imagemin.gifsicle({interlaced: true}),
-                imagemin.jpegtran({progressive: true}),
-                imagemin.optipng({optimizationLevel: 5}),
-                imagemin.svgo({
-                    plugins: [
-                        {removeViewBox: true},
-                        {cleanupIDs: false}
-                    ]
-                })
-            ]))
-        .pipe( gulp.dest(path.build.img));
-});
-
-
-
 gulp.task('build',[
     'html:build',
     'js:build',
@@ -137,5 +109,3 @@ gulp.task('build',[
 ]);
 
 gulp.task('default',['build','browser-sync','watch']);
-
-gulp.task('build-dist',['build','compress']);
