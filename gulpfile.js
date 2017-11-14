@@ -8,7 +8,8 @@ var gulp=require('gulp'),
     cssMin=require('gulp-minify-css'),
     rimRaf=require('rimraf'),
     browserSync=require('browser-sync'),
-    reload=browserSync.reload;
+    reload=browserSync.reload,
+    babel = require('gulp-babel');
 var path={
     build:{
         html:'build',
@@ -48,6 +49,9 @@ gulp.task('js:build',function(){
     gulp.src(path.src.js)
         .pipe(rigger())
         .pipe(sourceMaps.init())
+        .pipe(babel({
+            presets: ['env']
+        }))
         .pipe(ugLify())
         .pipe(sourceMaps.write())
         .pipe(gulp.dest(path.build.js))
